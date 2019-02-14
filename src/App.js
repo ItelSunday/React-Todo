@@ -20,9 +20,22 @@ class App extends React.Component {
 constructor() {
   super();
   this.state = {
+    ListToDo: ListToDo,
+    task: '',
 
   };
 } 
+
+addtodo = e => {
+  console.log(e.target);
+};
+
+handleChanges = (e) => {
+  console.log(e.target.value);
+  this.setState({
+    inputValue: e.target.value
+  })
+};
 
 
   render() {
@@ -32,7 +45,13 @@ constructor() {
         <Todo />
         <TodoForm />
       <form>
-      <input type= "text" />
+      <input 
+      type= "text" 
+      value= {this.state.inputValue} 
+      onChange= {this.handleChanges}
+      placeholder= "Task"
+      />
+
         <button onClick={this.addtodo}>Add To Do</button>
       </form>
       
