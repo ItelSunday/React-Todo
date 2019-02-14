@@ -3,14 +3,16 @@ import React from 'react';
 import Todo from './components/TodoComponents/Todo'
 import TodoForm from './components/TodoComponents/TodoForm';
 
-const ListToDo = [
+const listToDo = [
   {
     task: 'Organize Garage',
+    tasktodo: 'Organizing',
     id: 1528817077286,
     completed: false
   },
   {
     task: 'Bake Cookies',
+    tasktodo: 'Baking',
     id: 1528817084358,
     completed: false
   }
@@ -20,21 +22,38 @@ class App extends React.Component {
 constructor() {
   super();
   this.state = {
-    ListToDo: ListToDo,
-    task: '',
+    listToDo: listToDo,
+    tasktodo: ''
 
   };
 } 
 
+
 addtodo = e => {
+  e.preventDefault(); // To avoid the browser from refreshing when the button is clicked
   console.log(e.target);
+  // setState with new tasktodo at the end of the array
+  // .push() us === :)...  React === :( doesn't know how to render -side effect to avoid it
+  //To make it render faster and better, use immutable code:
+  const newTodo = {
+    tasktodo: this.state.tasktodo
+  }
+  this.setState({
+    listToDo: [...this.state.listToDo, newTodo], //inside set state can input multiple fields
+    tasktodo: ''
+
+  });
 };
 
+/*Every single keystroke updating in state/data, it will show up on input value*/
 handleChanges = (e) => {
   console.log(e.target.value);
   this.setState({
-    inputValue: e.target.value
-  })
+    ["tasktodo"]: e.target.value
+    /* tasktodo attribute on all input */
+    /* or [name: ] / ["name"] name: - bracket notation to pass to the string / valid to make name valid to statement */
+    /* When calling out group name convention on input use [e.target.tasktodo] */
+  }); 
 };
 
 
@@ -43,20 +62,24 @@ handleChanges = (e) => {
       <div className="todo-container">
         <h2>Welcome to your ToDo App!</h2>
         <Todo />
-        <TodoForm />
-      <form>
-      <input 
-      type= "text" 
-      value= {this.state.inputValue} 
-      onChange= {this.handleChanges}
-      placeholder= "Task"
+
+        <div className="task-list">
+
+        </div>
+
+        {/* {this.state.listToDos.map((listToDoFromMap, index) => (
+            <listToDos key={index} listToDos={listToDoFromMap} />
+        ))} */}
+
+      <TodoForm 
+      addtodo={this.addtodo}
+      handleChanges={this.handleChanges}
+      tasktodo={this.state.tasktodo}
       />
 
-        <button onClick={this.addtodo}>Add To Do</button>
-      </form>
-      
-      
       </div>
+
+
     );
   }
 }
