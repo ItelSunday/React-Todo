@@ -63,13 +63,18 @@ handleChanges = (e) => {
         <h2>Welcome to your ToDo App!</h2>
         <Todo />
 
-        <div className="task-list">
+        <ul className="task-list">
 
-        </div>
+        {this.state.listToDo.map((listToDoFromMap, index) => 
+        {
+          console.log(listToDoFromMap);
+          return(
+            <li key={index} > {listToDoFromMap.task} </li>
+        ) } )  } 
 
-        {/* {this.state.listToDos.map((listToDoFromMap, index) => (
-            <listToDos key={index} listToDos={listToDoFromMap} />
-        ))} */}
+        </ul>
+
+       
 
       <TodoForm 
       addtodo={this.addtodo}
