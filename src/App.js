@@ -69,7 +69,7 @@ handleChanges = (e) => {
         {
           console.log(listToDoFromMap);
           return(
-            <li key={index} > {listToDoFromMap.task} </li>
+            <li key={index} > {listToDoFromMap.tasktodo} </li>
         ) } )  } 
 
         </ul>
