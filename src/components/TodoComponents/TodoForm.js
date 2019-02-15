@@ -2,8 +2,9 @@ import React from 'react';
 
 const TodoForm = props => {
     return (
-    <form onSubmit={props.addtodo}>
+    <form onSubmit={props.addtodo} autocomplete= 'on'>
       <input 
+      name="tasktodo"
       type= "text" 
       value= {props.tasktodo} 
       onChange= {props.handleChanges}

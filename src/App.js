@@ -1,7 +1,8 @@
 import React from 'react';
 
-import Todo from './components/TodoComponents/Todo'
 import TodoForm from './components/TodoComponents/TodoForm';
+import Todo from './components/TodoComponents/Todo'
+
 
 const listToDo = [
   {
@@ -49,7 +50,7 @@ addtodo = e => {
 handleChanges = (e) => {
   console.log(e.target.value);
   this.setState({
-    ["tasktodo"]: e.target.value
+    [e.target.name]: e.target.value
     /* tasktodo attribute on all input */
     /* or [name: ] / ["name"] name: - bracket notation to pass to the string / valid to make name valid to statement */
     /* When calling out group name convention on input use [e.target.tasktodo] */
